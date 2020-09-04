@@ -8,7 +8,7 @@ import java.util.Date;
 public class Order {
 
     private Long id;
-    private ArrayList<Product> product;
+    private ArrayList<Product> productsInOrder;
     private Double price;
     private Seller seller;
     private Customer customer;
@@ -18,26 +18,34 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, ArrayList<Product> products, Seller seller, Customer customer) {
+    public Order(Long id, ArrayList<Product> productsInOrder, Seller seller, Customer customer) {
         this.id = id;
-        this.product = products;
+        this.productsInOrder = productsInOrder;
         this.seller = seller;
         this.customer = customer;
         this.orderDate = c.getTime();
-        this.price = countPrice(products);
+        this.price = countPrice(productsInOrder);
     }
 
-    public Order(Product product, Seller seller, Customer customer) {
-        this.product = new ArrayList<>();
-        this.product.add(product);
+    public Order(Product productsInOrder, Seller seller, Customer customer) {
+        this.productsInOrder = new ArrayList<>();
+        this.productsInOrder.add(productsInOrder);
         this.seller = seller;
         this.customer = customer;
-        this.price = product.getPrice();
+        this.price = productsInOrder.getPrice();
         this.orderDate = c.getTime();
     }
 
     public double countPrice(ArrayList<Product> products){
         return products.stream().mapToDouble(Product::getPrice).sum();
+    }
+
+    public void addToOrder(Product product){
+        productsInOrder.add(product);
+    }
+
+    public void deleteProdFromOrder(Long id){
+        productsInOrder.removeIf(p -> p.getId().equals(id));
     }
 
     public Long getId() {
@@ -52,12 +60,12 @@ public class Order {
         this.price = price;
     }
 
-    public ArrayList<Product> getProduct() {
-        return product;
+    public ArrayList<Product> getProductsInOrder() {
+        return productsInOrder;
     }
 
-    public void setProduct(ArrayList<Product> products) {
-        this.product = products;
+    public void setProductsInOrder(ArrayList<Product> productsInOrder) {
+        this.productsInOrder = productsInOrder;
     }
 
     public Seller getSeller() {
@@ -88,7 +96,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", product=" + product +
+                ", product=" + productsInOrder +
                 ", price=" + price +
                 ", seller=" + seller +
                 ", customer=" + customer +

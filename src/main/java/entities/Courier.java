@@ -1,22 +1,21 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Supplier {
+public class Courier {
 
     private Long id;
     private String lastName;
-    private String agencyName;
+    private String supplierCompanyName;
     private ArrayList<Product> deliveryProducts;
 
-    public Supplier() {
+    public Courier() {
     }
 
-    public Supplier(Long id, String lastName, String agencyName, ArrayList<Product> deliveryProducts) {
+    public Courier(Long id, String lastName, String supplierCompanyName, ArrayList<Product> deliveryProducts) {
         this.id = id;
         this.lastName = lastName;
-        this.agencyName = agencyName;
+        this.supplierCompanyName = supplierCompanyName;
         this.deliveryProducts = deliveryProducts;
     }
 
@@ -28,8 +27,8 @@ public class Supplier {
         return lastName;
     }
 
-    public String getAgencyName() {
-        return agencyName;
+    public String getSupplierCompanyName() {
+        return supplierCompanyName;
     }
 
     public ArrayList<Product> getDeliveryProducts() {
@@ -39,10 +38,10 @@ public class Supplier {
 
     @Override
     public String toString() {
-        return "Supplier{" +
+        return "Courier{" +
                 "id=" + id +
                 ", lastName='" + lastName + '\'' +
-                ", agencyName='" + agencyName + '\'' +
+                ", supplierCompanyName='" + supplierCompanyName + '\'' +
                 ", deliveryProducts=" + deliveryProducts +
                 '}';
     }

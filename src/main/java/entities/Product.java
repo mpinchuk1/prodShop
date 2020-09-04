@@ -8,15 +8,17 @@ public class Product {
     private String name;
     private Double price;
     private Date deliveryDate;
+    private Date expireDate;
 
     public Product() {
     }
 
-    public Product(Long id, String name, Double price, Date deliveryDate) {
+    public Product(Long id, String name, Double price, Date deliveryDate, Date expireDate) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.deliveryDate = deliveryDate;
+        this.expireDate = expireDate;
     }
 
     public Long getId() {
@@ -43,13 +45,22 @@ public class Product {
         return deliveryDate;
     }
 
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
 
     @Override
     public String toString() {
         return "Product{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 ", deliveryDate=" + deliveryDate +
+                ", expireDate=" + expireDate +
                 '}';
     }
 }
