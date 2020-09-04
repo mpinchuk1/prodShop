@@ -1,13 +1,14 @@
 package entities;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Order {
 
     private Long id;
-    private Product product;
+    private ArrayList<Product> product;
     private Double price;
     private Seller seller;
     private Customer customer;
@@ -17,33 +18,46 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, Product product, Seller seller, Customer customer) {
+    public Order(Long id, ArrayList<Product> products, Seller seller, Customer customer) {
         this.id = id;
-        this.product = product;
+        this.product = products;
         this.seller = seller;
         this.customer = customer;
         this.orderDate = c.getTime();
-        this.price = product.getPrice();
+        this.price = countPrice(products);
     }
 
     public Order(Product product, Seller seller, Customer customer) {
-        this.product = product;
+        this.product = new ArrayList<>();
+        this.product.add(product);
         this.seller = seller;
         this.customer = customer;
         this.price = product.getPrice();
         this.orderDate = c.getTime();
+    }
+
+    public double countPrice(ArrayList<Product> products){
+        return products.stream().mapToDouble(Product::getPrice).sum();
     }
 
     public Long getId() {
         return id;
     }
 
-    public Product getProduct() {
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public ArrayList<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(ArrayList<Product> products) {
+        this.product = products;
     }
 
     public Seller getSeller() {
@@ -75,9 +89,11 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", product=" + product +
+                ", price=" + price +
                 ", seller=" + seller +
                 ", customer=" + customer +
                 ", orderDate=" + orderDate +
+                ", c=" + c +
                 '}';
     }
 }

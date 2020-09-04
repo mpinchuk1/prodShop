@@ -32,17 +32,10 @@ public class Supplier {
         return agencyName;
     }
 
-    public void setAgencyName(String agencyName) {
-        this.agencyName = agencyName;
-    }
-
     public ArrayList<Product> getDeliveryProducts() {
         return deliveryProducts;
     }
 
-    public void setDeliveryProducts(ArrayList<Product> deliveryProducts) {
-        this.deliveryProducts = deliveryProducts;
-    }
 
     @Override
     public String toString() {
