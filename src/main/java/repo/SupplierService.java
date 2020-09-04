@@ -7,18 +7,18 @@ import java.util.ArrayList;
 
 public class SupplierService {
 
-    private Storage storage;
+    private ProductService storage;
 
     public SupplierService() {
     }
 
-    public SupplierService(Storage storage) {
+    public SupplierService(ProductService storage) {
         this.storage = storage;
     }
 
     public void addProductToStorage(Supplier supplier){
         ArrayList<Product> toStorage = supplier.getDeliveryProducts();
-        storage.getProductList().addAll(toStorage);
+        toStorage.forEach(p -> storage.addProduct(p));
 
     }
 
