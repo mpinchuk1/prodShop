@@ -4,31 +4,29 @@ import entities.Product;
 import entities.Courier;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class CourierService {
 
     private ProductService storage;
-    private ArrayList<Courier> couriers;
 
     public CourierService() {
     }
 
-    public CourierService(ProductService storage, ArrayList<Courier> couriers) {
+    public CourierService(ProductService storage) {
         this.storage = storage;
-        this.couriers = couriers;
     }
 
     public void addProductToStorage(Courier courier){
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime();
         ArrayList<Product> toStorage = courier.getDeliveryProducts();
-        toStorage.forEach(p -> storage.addProduct(p));
-    }
-
-    public void addCourier(Courier courier){
-        couriers.add(courier);
-    }
-
-    public void deleteCourier(Long id){
-        couriers.removeIf(c -> c.getId().equals(id));
+        toStorage.forEach(p -> {
+            p.setDeliveryDate(currentDate);
+            storage.addProduct(p);
+        });
+        System.out.println("Delivery by " + courier.getSupplierCompanyName() + ": \n" + "Courier " + courier.getLastName() + " has delivered " + toStorage);
     }
 
 }

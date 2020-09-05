@@ -27,7 +27,8 @@ public class Order {
         this.price = countPrice(productsInOrder);
     }
 
-    public Order(Product productsInOrder, Seller seller, Customer customer) {
+    public Order(Long id, Product productsInOrder, Seller seller, Customer customer) {
+        this.id = id;
         this.productsInOrder = new ArrayList<>();
         this.productsInOrder.add(productsInOrder);
         this.seller = seller;
@@ -52,44 +53,24 @@ public class Order {
         return id;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public ArrayList<Product> getProductsInOrder() {
         return productsInOrder;
     }
 
-    public void setProductsInOrder(ArrayList<Product> productsInOrder) {
-        this.productsInOrder = productsInOrder;
+    public Double getPrice() {
+        return price;
     }
 
     public Seller getSeller() {
         return seller;
     }
 
-    public void setSeller(Seller seller) {
-        this.seller = seller;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public Date getOrderDate() {
         return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
     }
 
     @Override

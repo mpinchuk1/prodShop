@@ -10,6 +10,7 @@ public class ProductService {
     private ArrayList<Product> productList;
 
     public ProductService() {
+        this.productList = new ArrayList<>();
     }
 
     public ProductService(ArrayList<Product> productList) {
@@ -19,8 +20,6 @@ public class ProductService {
     public Product getProductFromStorage(Long prodId){
         Optional<Product> product = productList.stream().filter(p -> p.getId().longValue() == prodId)
                 .findFirst();
-        product.ifPresent(value -> productList.remove(value));
-
         return product.orElse(new Product());
     }
 
@@ -32,10 +31,17 @@ public class ProductService {
         productList.add(product);
     }
 
-    @Override
-    public String toString() {
-        return "ProductService{" +
-                "productList=" + productList +
-                '}';
+    public void deleteProduct(Product product){
+        productList.remove(product);
+    }
+
+    public void showAvailableProducts(){
+        System.out.println("___________________________________________");
+        System.out.println("Products: ");
+        for(Product p: productList){
+            System.out.println("id: " + p.getId() + "\t name: " + p.getName()
+                    + "\n price: " + p.getPrice() + "\t expireDate: " + p.getExpireDate() + "\t forAdult: " + p.getForAdult());
+        }
+        System.out.println("___________________________________________");
     }
 }

@@ -19,12 +19,15 @@ public class ShopService {
         this.currentDate = calendar.getTime();
     }
 
-
-    public Product getProductFromStorage(Long prodId){
-        return storage.getProductFromStorage(prodId);
-    }
-
     public void filterExpiredProducts(){
-        storage.getProductList().removeIf(p -> p.getExpireDate().after(this.currentDate));
+        System.out.println("Checking products for expiration");
+        storage.getProductList().removeIf(p -> {
+            if(p.getExpireDate().before(this.currentDate)){
+                System.out.println("There is an expired product: " + p + ". \n It will be disposed of!");
+                return true;
+            }
+            else
+                return false;
+        });
     }
 }

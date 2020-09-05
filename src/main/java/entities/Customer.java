@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Customer {
@@ -9,6 +10,7 @@ public class Customer {
     private String firstName;
     private String lastName;
     private int age;
+    private Date registrationDate;
     private ArrayList<Product> productBucket;
 
     public Customer() {
@@ -19,6 +21,7 @@ public class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.registrationDate = new Date();
         this.productBucket = new ArrayList<>();
     }
 
@@ -46,6 +49,14 @@ public class Customer {
         return productBucket;
     }
 
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate){
+        this.registrationDate = registrationDate;
+    }
+
     public void setProductBucket(ArrayList<Product> productBucket) {
         this.productBucket = productBucket;
     }
@@ -61,6 +72,7 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
+                ", registrationDate=" + registrationDate +
                 ", productBucket=" + productBucket +
                 '}';
     }
