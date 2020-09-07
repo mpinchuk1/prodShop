@@ -1,13 +1,10 @@
 package entities;
 
-public class Seller {
+public final class Seller {
 
-    private Long id;
-    private String firstName;
-    private String lastName;
-
-    public Seller() {
-    }
+    private final Long id;
+    private final String firstName;
+    private final String lastName;
 
     public Seller(Long id, String firstName, String lastName) {
         this.id = id;

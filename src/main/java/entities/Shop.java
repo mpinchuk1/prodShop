@@ -1,12 +1,9 @@
 package entities;
 
-public class Shop {
+public final class Shop {
 
-    private String name;
-    private Seller seller;
-
-    public Shop() {
-    }
+    private final String name;
+    private final Seller seller;
 
     public Shop(String name, Seller seller) {
         this.name = name;
@@ -14,19 +11,4 @@ public class Shop {
         System.out.println("Shop " + name + " is open. \n" + "The seller today is " + seller.getFirstName() + " " + seller.getLastName());
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Seller getSeller() {
-        return seller;
-    }
-
-    public void setSeller(Seller seller) {
-        this.seller = seller;
-    }
 }

@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CourierService {
+public final class CourierService {
 
-    private ProductService storage;
-
-    public CourierService() {
-    }
+    private final ProductService storage;
 
     public CourierService(ProductService storage) {
         this.storage = storage;

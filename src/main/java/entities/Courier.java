@@ -2,25 +2,18 @@ package entities;
 
 import java.util.ArrayList;
 
-public class Courier {
+public final class Courier {
 
-    private Long id;
-    private String lastName;
-    private String supplierCompanyName;
-    private ArrayList<Product> deliveryProducts;
-
-    public Courier() {
-    }
+    private final Long id;
+    private final String lastName;
+    private final String supplierCompanyName;
+    private final ArrayList<Product> deliveryProducts;
 
     public Courier(Long id, String lastName, String supplierCompanyName, ArrayList<Product> deliveryProducts) {
         this.id = id;
         this.lastName = lastName;
         this.supplierCompanyName = supplierCompanyName;
         this.deliveryProducts = deliveryProducts;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getLastName() {

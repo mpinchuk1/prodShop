@@ -1,19 +1,15 @@
 package entities;
 
 import java.util.Date;
-import java.util.Objects;
 
-public class Product {
+public final class Product {
 
-    private Long id;
-    private String name;
-    private Double price;
+    private final Long id;
+    private final String name;
+    private final Double price;
     private Date deliveryDate;
-    private Date expireDate;
-    private Boolean forAdult;
-
-    public Product() {
-    }
+    private final Date expireDate;
+    private final Boolean forAdult;
 
     public Product(Long id, String name, Double price, Date expireDate, Boolean forAdult) {
         this.id = id;
@@ -32,20 +28,8 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Double getPrice() {
         return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Date getDeliveryDate() {
-        return deliveryDate;
     }
 
     public void setDeliveryDate(Date deliveryDate) {
@@ -56,16 +40,8 @@ public class Product {
         return expireDate;
     }
 
-    public void setExpireDate(Date expireDate) {
-        this.expireDate = expireDate;
-    }
-
     public Boolean getForAdult() {
         return forAdult;
-    }
-
-    public void setForAdult(Boolean forAdult) {
-        this.forAdult = forAdult;
     }
 
     @Override

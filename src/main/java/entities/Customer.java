@@ -2,19 +2,15 @@ package entities;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Customer {
+public final class Customer {
 
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private int age;
+    private final Long id;
+    private final String firstName;
+    private final String lastName;
+    private final int age;
     private Date registrationDate;
-    private ArrayList<Product> productBucket;
-
-    public Customer() {
-    }
+    private final ArrayList<Product> productBucket;
 
     public Customer(Long id, String firstName, String lastName, int age) {
         this.id = id;
@@ -27,10 +23,6 @@ public class Customer {
 
     public void addProductToBucket(Product product){
         productBucket.add(product);
-    }
-
-    public void deleteProductFromBucket(Long id){
-        productBucket.removeIf(p -> p.getId().longValue() == id);
     }
 
     public Long getId() {
@@ -55,10 +47,6 @@ public class Customer {
 
     public void setRegistrationDate(Date registrationDate){
         this.registrationDate = registrationDate;
-    }
-
-    public void setProductBucket(ArrayList<Product> productBucket) {
-        this.productBucket = productBucket;
     }
 
     public int getAge() {

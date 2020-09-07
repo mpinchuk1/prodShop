@@ -5,13 +5,10 @@ import entities.Product;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ShopService {
+public final class ShopService {
 
-    private ProductService storage;
-    private Date currentDate;
-
-    public ShopService() {
-    }
+    private final ProductService storage;
+    private final Date currentDate;
 
     public ShopService(ProductService storage) {
         this.storage = storage;

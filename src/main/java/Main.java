@@ -30,9 +30,9 @@ public class Main {
         CustomerService customerService = new CustomerService();
         OrderService orderService = new OrderService(productService, customerService);
         courierService.addProductToStorage(courier1);
-        productService.showAvailableProducts();
-        shopService.filterExpiredProducts();
+        System.out.println(productService);
 
+        shopService.filterExpiredProducts();
 
         ArrayList<Product> products = productService.getProductList();
         System.out.println(products);
@@ -44,9 +44,8 @@ public class Main {
         customer2.addProductToBucket(products.get(5));
         orderService.addOrder(seller1, customer1);
         orderService.addOrder(seller1, customer2);
-        productService.showAvailableProducts();
-        customerService.showAllCustomers();
-        orderService.showAllOrders();
-
+        System.out.println(productService);
+        System.out.println(customerService);
+        System.out.println(orderService);
     }
 }

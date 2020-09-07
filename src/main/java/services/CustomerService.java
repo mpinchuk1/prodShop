@@ -3,20 +3,17 @@ package services;
 import entities.Customer;
 import entities.Product;
 
+import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CustomerService {
+public final class CustomerService {
 
-    private ArrayList<Customer> customers;
+    private final ArrayList<Customer> customers;
 
     public CustomerService() {
         this.customers = new ArrayList<>();
-    }
-
-    public CustomerService(ArrayList<Customer> customers) {
-        this.customers = customers;
     }
 
     public void addCustomer(Customer customer){
@@ -26,17 +23,23 @@ public class CustomerService {
         customers.add(customer);
     }
 
-    public void showAllCustomers(){
-        System.out.println("___________________________________________");
-        System.out.println("Customers: ");
-        for(Customer c: customers){
-            System.out.println("id: " + c.getId() + "\t firstName: " + c.getFirstName() + "\n lastName: " + c.getLastName()
-                    + "\t age: " + c.getAge() + "\t regDate: " + c.getRegistrationDate());
-        }
-        System.out.println("___________________________________________");
-    }
-
     public void clearCustomerBucket(Customer customer) {
         customer.getProductBucket().clear();
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n___________________________________________");
+        stringBuilder.append("\nCustomers: ");
+        for(Customer c: customers){
+            stringBuilder.append("\nid: ").append(c.getId()).append("\t firstName: ")
+                    .append(c.getFirstName()).append("\n lastName: ").append(c.getLastName())
+                    .append("\t age: ").append(c.getAge()).append("\t regDate: ")
+                    .append(c.getRegistrationDate());
+        }
+        stringBuilder.append("\n___________________________________________");
+
+        return stringBuilder.toString();
     }
 }
