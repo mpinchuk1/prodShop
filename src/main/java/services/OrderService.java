@@ -53,11 +53,7 @@ public final class OrderService {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("___________________________________________").append("\nOrders: ");
         for(Order o: orders){
-            stringBuilder.append("\nid: ").append(o.getId()).append("\t inOrder: ")
-                    .append(o.getProductsInOrder()).append("\n seller: ")
-                    .append(o.getSeller()).append("\t customer: ").append(o.getCustomer())
-                    .append("\n price: ").append(o.getPrice()).append("\t orderDate: ")
-                    .append(o.getOrderDate());
+            stringBuilder.append(o.toString());
         }
         stringBuilder.append("\n___________________________________________");
 
