@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@RequestMapping("supply")
 public class CourierController {
     private final CourierService courierService;
     private final ProductService productService;
@@ -26,16 +27,17 @@ public class CourierController {
         this.productService = productService;
     }
 
-    @RequestMapping(value = "/deliverProducts", method = RequestMethod.POST)
+    @PostMapping("deliverProducts")
     public ResponseEntity<Void> getProductsFromCourier(@RequestBody String deliverJson){
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         DeliveryDTO deliver = gson.fromJson(deliverJson, DeliveryDTO.class);
         List<Product> toStorage = deliver.getProducts();
         List<Integer> prodQuantities = deliver.getProductQuantities();
         Courier courier = deliver.getCourier();
+
         Calendar calendar = Calendar.getInstance();
         Date currentDate = calendar.getTime();
-        System.out.println(courier);
+
         courierService.addCourier(courier);
         for(Product p: toStorage){
             p.setDeliveryDate(currentDate);

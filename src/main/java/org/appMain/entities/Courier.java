@@ -1,7 +1,6 @@
 package org.appMain.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,12 +15,6 @@ public class Courier {
     private List<Product> deliveryProducts;
 
     public Courier() {
-    }
-
-    public Courier(String lastName, String supplierCompanyName, ArrayList<Product> deliveryProducts) {
-        this.lastName = lastName;
-        this.supplierCompanyName = supplierCompanyName;
-        this.deliveryProducts = deliveryProducts;
     }
 
     public String getLastName() {

@@ -4,7 +4,6 @@ import org.appMain.entities.Courier;
 import org.appMain.entities.Product;
 
 import java.util.List;
-import java.util.Map;
 
 public class DeliveryDTO {
     private List<Product> products;

@@ -35,7 +35,6 @@ public class ShopService {
                 System.out.println("There is an expired product: " + p + ". \n It will be disposed of!");
                 Storage storage = storageRepository.findByProduct(p);
                 storageRepository.delete(storage);
-                productRepository.delete(p);
             }
         }
     }

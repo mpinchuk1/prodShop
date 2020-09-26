@@ -1,16 +1,16 @@
 package org.appMain.services;
 
-import org.appMain.entities.Product;
 import org.appMain.entities.Courier;
+import org.appMain.entities.Product;
 import org.appMain.entities.Storage;
 import org.appMain.repo.CourierRepository;
-import org.appMain.repo.ProductRepository;
 import org.appMain.repo.StorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CourierService {

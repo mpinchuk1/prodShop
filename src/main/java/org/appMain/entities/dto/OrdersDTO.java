@@ -1,7 +1,5 @@
 package org.appMain.entities.dto;
 
-
-
 import org.appMain.entities.Order;
 
 import java.util.List;

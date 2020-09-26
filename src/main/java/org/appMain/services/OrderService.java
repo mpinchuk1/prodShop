@@ -34,12 +34,10 @@ public class OrderService {
             if(p.getForAdult() && customer.getAge() < 18)
                 System.out.println("Customer(" + customer.getFirstName() + " " + customer.getLastName()
                         + ") age is " + customer.getAge() + ". \n He can't buy " + p.getName());
-            //throw ForAdultException
             else{
                 Product product = productRepository.findProductByName(p.getName());
                 Storage productItem = storageRepository.findByProduct(product);
                 if(productItem == null){
-                    //throw ProductSoldException
                     continue;
                 }
                 int prodQuantity = productItem.getQuantity();
@@ -50,15 +48,16 @@ public class OrderService {
                     storageRepository.save(productItem);
                 }else {
                     System.out.println("There is no " + p.getName() + ". It has been sold already.");
-                    //throw ProductSoldException
                     storageRepository.delete(productItem);
                 }
             }
         }
-        Order order = new Order(toOrder, seller, customer);
-        System.out.println("New order has created: " + order);
-        customerRepository.save(customer);
-        orderRepository.save(order);
+        if(toOrder.size() > 0){
+            Order order = new Order(toOrder, seller, customer);
+            System.out.println("New order has created: " + order);
+            customerRepository.save(customer);
+            orderRepository.save(order);
+        }
     }
 
     @Transactional(readOnly = true)
