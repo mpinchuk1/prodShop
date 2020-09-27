@@ -17,7 +17,7 @@ public class ShopController {
         this.shopService = shopService;
     }
 
-    @GetMapping("filterExpiredProducts")
+    @GetMapping("filterExpired")
     public ResponseEntity<Void> filterExpiredProducts(){
         shopService.filterExpiredProducts();
         return ResponseEntity.ok().build();

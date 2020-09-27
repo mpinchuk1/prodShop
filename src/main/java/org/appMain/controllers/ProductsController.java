@@ -19,7 +19,7 @@ public class ProductsController {
         this.productService = productService;
     }
 
-    @GetMapping("getAll")
+    @GetMapping
     public @ResponseBody ProductsDTO getAllProducts(){
         ProductsDTO productsDTO = new ProductsDTO();
         productsDTO.setProducts(productService.getAllProduct());

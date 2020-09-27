@@ -18,7 +18,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("getAll")
+    @GetMapping
     public @ResponseBody CustomersDTO getAllCustomers(){
         CustomersDTO customersDTO = new CustomersDTO();
         customersDTO.setCustomers(customerService.getAllCustomers());
