@@ -28,7 +28,7 @@ public class CourierController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> getProductsFromCourier(@RequestBody String deliverJson){
+    public ResponseEntity<Void> deliverProducts(@RequestBody String deliverJson){
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         DeliveryDTO deliver = gson.fromJson(deliverJson, DeliveryDTO.class);
         List<Product> toStorage = deliver.getProducts();

@@ -34,7 +34,6 @@ public class CourierService {
 
             if(existsStorageItem == null){
                 Storage storageItem = new Storage();
-                storageItem.setId(UUID.randomUUID());
                 storageItem.setProduct(prodTemp);
                 storageItem.setQuantity(prodQTemp);
                 storageRepository.save(storageItem);

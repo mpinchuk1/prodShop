@@ -1,6 +1,7 @@
 package org.appMain.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.util.UUID;
@@ -8,6 +9,7 @@ import java.util.UUID;
 @Entity
 public class Storage {
     @Id
+    @GeneratedValue
     private UUID id;
     @OneToOne
     private Product product;
