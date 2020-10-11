@@ -6,12 +6,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.util.UUID;
 
-@Entity
+
 public class Storage {
-    @Id
-    @GeneratedValue
+
     private UUID id;
-    @OneToOne
     private Product product;
     private int quantity;
 

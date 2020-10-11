@@ -7,18 +7,13 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-@Entity
+
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
     private Double price;
     private Date deliveryDate;
     private Date expireDate;
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "courier_id")
     private Courier deliveredBy;
     private Boolean forAdult;
 
@@ -54,7 +49,7 @@ public class Product {
         return expireDate;
     }
 
-    public Courier getDeliveredBy(){
+    public Courier getDeliveredBy() {
         return deliveredBy;
     }
 

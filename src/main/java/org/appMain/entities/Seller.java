@@ -14,7 +14,7 @@ public class Seller {
     private String firstName;
     private String lastName;
 
-    public Seller(){
+    public Seller() {
     }
 
     public Seller(String firstName, String lastName) {

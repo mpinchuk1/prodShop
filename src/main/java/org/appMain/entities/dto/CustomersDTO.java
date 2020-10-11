@@ -8,6 +8,9 @@ import java.util.List;
 public class CustomersDTO {
     private List<Customer> customers;
 
+    public CustomersDTO() {
+    }
+
     public List<Customer> getCustomers() {
         return customers;
     }

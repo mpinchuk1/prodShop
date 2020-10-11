@@ -1,51 +1,32 @@
 package org.appMain.controllers;
 
-import com.google.gson.GsonBuilder;
-import org.appMain.entities.Courier;
-import org.appMain.entities.Product;
-import org.appMain.entities.dto.DeliveryDTO;
-import org.appMain.services.CourierService;
-import org.appMain.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.google.gson.Gson;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("supply")
 public class CourierController {
-    private final CourierService courierService;
-    private final ProductService productService;
-
-    @Autowired
-    public CourierController(CourierService courierService, ProductService productService) {
-        this.courierService = courierService;
-        this.productService = productService;
-    }
+    private static final String COURIER_URL = "http://localhost:8082";
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final HttpHeaders headers = new HttpHeaders();
 
     @PostMapping
-    public ResponseEntity<Void> deliverProducts(@RequestBody String deliverJson){
-        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
-        DeliveryDTO deliver = gson.fromJson(deliverJson, DeliveryDTO.class);
-        List<Product> toStorage = deliver.getProducts();
-        List<Integer> prodQuantities = deliver.getProductQuantities();
-        Courier courier = deliver.getCourier();
+    public ResponseEntity<Void> deliverProducts(@RequestBody String deliverJson) {
+        HttpEntity<String> products = new HttpEntity<>(deliverJson);
+        ResponseEntity<Void> response = restTemplate
+                .exchange(COURIER_URL + "/supply",
+                        HttpMethod.POST, products, Void.class);
 
-        Calendar calendar = Calendar.getInstance();
-        Date currentDate = calendar.getTime();
-
-        courierService.addCourier(courier);
-        for(Product p: toStorage){
-            p.setDeliveryDate(currentDate);
-            p.setDeliveredBy(courier);
-            productService.addProduct(p);
-        }
-        courierService.addProductsToStorage(courier, toStorage, prodQuantities);
-
-        return ResponseEntity.ok().build();
+        if (response.getStatusCodeValue() == 200)
+            return ResponseEntity.ok().build();
+        else
+            return ResponseEntity.badRequest().build();
     }
 }

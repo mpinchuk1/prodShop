@@ -11,6 +11,9 @@ public class CreateOrderDTO {
     private Customer customer;
     private List<Product> products;
 
+    public CreateOrderDTO() {
+    }
+
     public Seller getSeller() {
         return seller;
     }
