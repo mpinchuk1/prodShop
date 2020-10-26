@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("products")
 public class ProductsController {
-    private static final String PRODUCTS_URL = "http://localhost:8082";
+    private static final String PRODUCTS_URL = "http://courierservice:8082";
     private final RestTemplate restTemplate = new RestTemplate();
     private final HttpHeaders headers = new HttpHeaders();
     private final HttpEntity<Object> headersEntity = new HttpEntity<>(headers);

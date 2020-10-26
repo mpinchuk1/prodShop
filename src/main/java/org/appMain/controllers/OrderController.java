@@ -17,8 +17,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("orders")
 public class OrderController {
-    private static final String ORDERS_URL = "http://localhost:8084";
-    private static final String CUSTOMERS_URL = "http://localhost:8083";
+    private static final String ORDERS_URL = "http://orderservice:8084";
+    private static final String CUSTOMERS_URL = "http://customerservice:8083";
     private final RestTemplate restTemplate = new RestTemplate();
     private final HttpHeaders headers = new HttpHeaders();
     private final HttpEntity<Object> headersEntity = new HttpEntity<>(headers);

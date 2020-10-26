@@ -1,6 +1,8 @@
 package org.appMain.entities;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.sql.Date;
 import java.util.UUID;
 
 public class Order {
@@ -9,6 +11,7 @@ public class Order {
     private Double price;
     private Seller seller;
     private UUID customerId;
+    @JsonFormat(pattern = "MMM dd, yyyy")
     private Date orderDate;
 
     public Order() {

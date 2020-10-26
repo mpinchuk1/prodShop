@@ -1,10 +1,6 @@
 package org.appMain.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.UUID;
-
 
 public class OrderProduct {
 

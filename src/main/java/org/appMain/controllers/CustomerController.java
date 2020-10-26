@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("customers")
 public class CustomerController {
-    private static final String CUSTOMERS_URL = "http://localhost:8083";
+    private static final String CUSTOMERS_URL = "http://customerservice:8083";
     private final RestTemplate restTemplate = new RestTemplate();
     private final HttpHeaders headers = new HttpHeaders();
     private final HttpEntity<Object> headersEntity = new HttpEntity<>(headers);

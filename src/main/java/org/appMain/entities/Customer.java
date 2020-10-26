@@ -1,8 +1,9 @@
 package org.appMain.entities;
 
-import java.util.Date;
-import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.sql.Date;
+import java.util.UUID;
 
 public class Customer {
 
@@ -10,17 +11,17 @@ public class Customer {
     private String firstName;
     private String lastName;
     private Integer age;
+    @JsonFormat(pattern = "MMM dd, yyyy")
     private Date registrationDate;
 
     public Customer() {
-
     }
 
     public Customer(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.registrationDate = new Date();
+        this.registrationDate = new Date(System.currentTimeMillis());
     }
 
     public UUID getCustomerId() {

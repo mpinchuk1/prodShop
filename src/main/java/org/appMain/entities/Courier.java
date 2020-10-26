@@ -1,6 +1,5 @@
 package org.appMain.entities;
 
-import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
