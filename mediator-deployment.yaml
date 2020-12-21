@@ -1,27 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: mediator
   name: mediator
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: mediator
-  strategy: { }
+      app: mediator
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: mediator
+        app: mediator
     spec:
       containers:
         - image: mpinchuk/mediator:latest
@@ -29,7 +18,3 @@ spec:
           name: mediator
           ports:
             - containerPort: 8081
-          resources: { }
-      restartPolicy: Always
-      serviceAccountName: ""
-status: { }
