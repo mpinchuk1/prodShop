@@ -4,6 +4,9 @@ import org.appMain.entities.Customer;
 import org.appMain.entities.dto.CreateOrderDTO;
 import org.appMain.entities.dto.OrderProductsDTO;
 import org.appMain.entities.dto.OrdersDTO;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,6 +25,17 @@ public class OrderController {
     private final RestTemplate restTemplate = new RestTemplate();
     private final HttpHeaders headers = new HttpHeaders();
     private final HttpEntity<Object> headersEntity = new HttpEntity<>(headers);
+
+    private final RabbitTemplate rabbitTemplate;
+    @Value("${rabbitmq.exchange}")
+    private String exchange;
+    @Value("${order.routing-key}")
+    private String routingKey;
+
+    @Autowired
+    public OrderController(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     @PostMapping
     public ResponseEntity<Void> createOrder(@RequestBody CreateOrderDTO createOrder) {
@@ -62,5 +76,12 @@ public class OrderController {
                 .exchange(ORDERS_URL + "/orders/orderProducts",
                         HttpMethod.GET, headersEntity, OrderProductsDTO.class);
         return response.getBody();
+    }
+
+    @PostMapping("mq")
+    public ResponseEntity<Void> createOrderMq(@RequestBody CreateOrderDTO createOrder) {
+        createOrder.getCustomer().setCustomerId(UUID.randomUUID());
+        rabbitTemplate.convertAndSend(exchange, routingKey, createOrder);
+        return ResponseEntity.ok().build();
     }
 }
